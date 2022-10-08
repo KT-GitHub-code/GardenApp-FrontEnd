@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from "react";
+import Plant from "./Plant";
+import PlantList from "./PlantList";
+
 
 function App() {
+  const [plants, setPlants] = useState([]);
+  useEffect( () => {
+    const fetchLocation = async() => {
+      await fetch("https://localhost:8080/plants")
+      .then( (res) => res.json())
+      .then( (plants) => {
+        setPlants(plants);
+        console.log(plants);
+      })
+    };
+    fetchLocation();
+  }, [] );
+
+  if(!plants.length) return <div>Loading...</div>
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <>
+    Plantlist:
+    <div>
+      <PlantList plants={plants}/>
+      
     </div>
+
+  </>
   );
 }
 
