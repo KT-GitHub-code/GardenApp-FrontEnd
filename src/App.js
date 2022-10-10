@@ -7,7 +7,7 @@ function App() {
   const [plants, setPlants] = useState([]);
   useEffect( () => {
     const fetchLocation = async() => {
-      await fetch("http://localhost:8080/plants")
+      await fetch("http://localhost:8080/api/plants")
       .then( (res) => res.json())
       .then( (plants) => {
         setPlants(plants);
