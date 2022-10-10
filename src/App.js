@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import NewPlant from "./NewPlant";
 import Plant from "./Plant";
 import PlantList from "./PlantList";
 
@@ -24,6 +25,9 @@ function App() {
     <div>
       <PlantList plants={plants}/>
       
+    </div>
+    <div>
+      <NewPlant/>
     </div>
 
   </>

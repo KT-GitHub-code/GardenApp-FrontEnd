@@ -1,16 +1,15 @@
 import React from 'react'
-import './Card.css'
 
-export default function Plant({plant}) {
+export default function NewPlant() {
   return (
     <div className='container'>    
       <div className='card-container'>
         <div className='image-container'>
-          <img src="leaf-green-plant-tree-grass-PnQcaVDj.jpg" width="200" height="200" alt=""/>
+          <img src="depositphotos_69303973-stock-photo-pharmacy-plus-with-ring-sign.jpg" width="200" height="200" alt=""/>
         </div>
         <div className='card-content'>
           <div className='card-title'>
-            {plant.type}
+            <p>Need a new plant? :)</p>
           </div>
 
         </div>
