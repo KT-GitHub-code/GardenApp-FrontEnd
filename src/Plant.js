@@ -1,7 +1,7 @@
 import React from 'react'
 import './Card.css'
 
-export default function Plant({plant}) {
+const Plant = ({plant}) => {
   return (
     <div className='container'>    
       <div className='card-container'>
@@ -18,3 +18,5 @@ export default function Plant({plant}) {
     </div>
   )
 }
+
+export default Plant

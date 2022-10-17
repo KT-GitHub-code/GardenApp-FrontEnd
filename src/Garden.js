@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import NewPlant from "./NewPlant";
 import PlantList from "./PlantList";
 
-export default function Garden() {
+const Garden = () => {
     const [plants, setPlants] = useState([]);
     useEffect( () => {
         const fetchLocation = async() => {
@@ -29,3 +29,5 @@ export default function Garden() {
         </>
     )
 }
+
+export default Garden

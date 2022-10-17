@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NewPlant() {
+const NewPlant = () => {
   return (
     <div className='container'>    
       <div className='card-container'>
@@ -17,3 +17,5 @@ export default function NewPlant() {
     </div>
   )
 }
+
+export default NewPlant
