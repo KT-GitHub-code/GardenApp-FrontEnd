@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import NewPlant from "./NewPlant";
 import PlantList from "./PlantList";
+import { Link } from "react-router-dom";
 
 const Garden = () => {
     const [plants, setPlants] = useState([]);
@@ -24,7 +25,7 @@ const Garden = () => {
         <PlantList plants={plants}/>
         </div>
         <div>
-        <NewPlant/>
+        <Link to="/garden/newplant"> <NewPlant/> </Link>
         </div>
         </>
     )
