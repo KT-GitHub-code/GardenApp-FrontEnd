@@ -10,6 +10,21 @@ const NewPlantCreator = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    try{
+      fetch('http://localhost:8080/api/plant', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          "type": `${myPlant}`,
+          "garden": {"id":1} 
+        })
+      })
+    }
+    catch(err){
+      console.log(err.message);
+    }
+
     alert(`Your new ${myPlant} plant was sent to your Garden!`)
   }
 
