@@ -59,8 +59,7 @@ const Garden = () => {
         </div>
     )
     
-    if(!plants.length) return (
-    <div><Link to="/garden/newplant"> <NewPlant/> </Link></div>)
+    if(!plants.length) return (<div>Loading...</div>)
 
     return (
         <>
