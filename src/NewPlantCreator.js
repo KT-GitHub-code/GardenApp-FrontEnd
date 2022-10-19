@@ -32,8 +32,21 @@ const NewPlantCreator = () => {
     <form onSubmit={handleSubmit}>
       <label>Select plant type:
         <select value={myPlant} onChange={handleChange}>
-          <option selected value="ALOE">Aloe</option>
-          <option value="SEDUM" selected>Sedum</option>
+          <option value="AEONIUM">AEONIUM</option>
+          <option value="AGAVE">AGAVE</option>
+          <option value="ALOE">ALOE</option>
+          <option value="CRASSULA">CRASSULA</option>
+          <option value="ECHEVERIA">ECHEVERIA</option>
+          <option value="EUPHORBIA">EUPHORBIA</option>
+          <option value="GASTERIA">GASTERIA</option>
+          <option value="GRAPTOPETALUM">GRAPTOPETALUM</option>
+          <option value="HAWORTHIA">HAWORTHIA</option>
+          <option value="KALANCHOE">KALANCHOE</option>
+          <option value="MAMMILLARIA">MAMMILLARIA</option>
+          <option value="OPUNTIA">OPUNTIA</option>
+          <option value="SEDUM">SEDUM</option>
+          <option value="SEMPERVIVUM">SEMPERVIVUM</option>
+          <option value="SENECIO">SENECIO</option>
         </select>
       </label>
       <button type='submit'>Add plant</button>
