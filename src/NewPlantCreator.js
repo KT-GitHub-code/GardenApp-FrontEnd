@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import GardenContext from './context/GardenContext';
+
 
 const NewPlantCreator = () => {
+
+  const gardenId = useContext(GardenContext);
 
   const [myPlant, setMyPlant] = useState("ALOE");
 
@@ -17,7 +21,7 @@ const NewPlantCreator = () => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           "type": `${myPlant}`,
-          "garden": {"id":1} 
+          "garden": {"id":`${gardenId.gardenId}`} 
         })
       })
     }
