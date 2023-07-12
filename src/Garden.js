@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 import GardenContext from './context/GardenContext';
 
 const Garden = () => {
-    
+
     const [plants, setPlants] = useState([]);
     const [garden, setGarden] = useState(null);
     const gardenId = useContext(GardenContext);
 
-    
+
     // fetch POST to create a new garden
     const handleClick = async () => {
         try{
-            fetch('http://localhost:8080/api/garden', {
+            fetch('http://localhost:9000/api/garden', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({})
@@ -29,7 +29,7 @@ const Garden = () => {
     // fetch GET the garden
     useEffect( () => {
         const fetchGarden = async() => {
-        await fetch(`http://localhost:8080/api/gardens/${gardenId.gardenId}`,{
+        await fetch(`http://localhost:9000/api/gardens/${gardenId.gardenId}`,{
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
         })
@@ -46,7 +46,7 @@ const Garden = () => {
 // fetch GET the plants that belong to this garden
 useEffect( () => {
     const fetchPlants = async() => {
-    await fetch(`http://localhost:8080/api/plantsbygardenid/${gardenId.gardenId}`)
+    await fetch(`http://localhost:9000/api/plantsbygardenid/${gardenId.gardenId}`)
     .then( (res) => res.json())
     .then( (plants) => {
         setPlants(plants);
@@ -64,7 +64,7 @@ useEffect( () => {
             <button onClick={handleClick} >I want a garden</button>
         </div>
     )
-    
+
     if(!plants.length) return (
         <div>
             <h2>Loading...</h2>

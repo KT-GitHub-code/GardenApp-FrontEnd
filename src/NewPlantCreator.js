@@ -16,12 +16,12 @@ const NewPlantCreator = () => {
     event.preventDefault();
 
     try{
-      fetch('http://localhost:8080/api/plant', {
+      fetch('http://localhost:9000/api/plant', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           "type": `${myPlant}`,
-          "garden": {"id":`${gardenId.gardenId}`} 
+          "garden": {"id":`${gardenId.gardenId}`}
         })
       })
     }
