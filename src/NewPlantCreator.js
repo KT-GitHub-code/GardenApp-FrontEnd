@@ -21,7 +21,8 @@ const NewPlantCreator = () => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           "type": `${myPlant}`,
-          "garden": {"id":`${gardenId.gardenId}`}
+          // "garden": {"id":`${gardenId.gardenId}`},
+          "gardenId": `${gardenId.gardenId}`
         })
       })
     }
