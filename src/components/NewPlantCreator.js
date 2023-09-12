@@ -1,12 +1,18 @@
 import React, { useState, useContext } from 'react'
-import GardenContext from './context/GardenContext';
+import GardenContext from '../context/GardenContext';
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 
 const NewPlantCreator = () => {
 
   const gardenId = useContext(GardenContext);
 
+  const token = localStorage.getItem('token');
+
   const [myPlant, setMyPlant] = useState("ALOE");
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setMyPlant(event.target.value)
@@ -16,14 +22,13 @@ const NewPlantCreator = () => {
     event.preventDefault();
 
     try{
-      fetch('http://localhost:9000/api/plant', {
+      axios.post('http://localhost:9000/api/plant', {
+        "type": `${myPlant}`,
+        "gardenId": `${gardenId.gardenId}`
+      },{
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          "type": `${myPlant}`,
-          // "garden": {"id":`${gardenId.gardenId}`},
-          "gardenId": `${gardenId.gardenId}`
-        })
+        headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'},
+        withCredentials: true,
       })
     }
     catch(err){
@@ -31,6 +36,7 @@ const NewPlantCreator = () => {
     }
 
     alert(`Your new ${myPlant} plant was sent to your Garden!`)
+    navigate('/garden');
   }
 
   return (

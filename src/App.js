@@ -1,10 +1,11 @@
 import React from "react";
-import Garden from "./Garden";
-import {Route, Routes, useNavigate} from "react-router-dom";
-import {useState, useEffect} from "react";
-import Layout from "./Layout";
-import NewPlantCreator from "./NewPlantCreator";
+import Garden from "./components/Garden";
+import {Route, Routes} from "react-router-dom";
+import Layout from "./components/Layout";
+import NewPlantCreator from "./components/NewPlantCreator";
 import {GardenProvider} from "./context/GardenContext";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Route path="/" element={<Layout/>}>
           <Route path="garden" element={<Garden/>}/>
           <Route path="garden/newplant" element={<NewPlantCreator/>}/>
+          <Route path="registration" element={<Register/>}/>
+          <Route path="login" element={<Login/>}/>
       </Route>
     </Routes>
     </GardenProvider>

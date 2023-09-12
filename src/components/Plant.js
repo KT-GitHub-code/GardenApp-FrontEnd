@@ -1,12 +1,12 @@
 import React from 'react'
-import './Card.css'
+import '../Card.css'
 
 const Plant = ({plant}) => {
 
   let imageName = plant.type.toLowerCase();
 
   return (
-    <div className='container'>    
+    <div className='container'>
       <div className='card-container'>
         <div className='image-container'>
           <img src={`${imageName}.jpg`} width="300" height="200" alt=""/>

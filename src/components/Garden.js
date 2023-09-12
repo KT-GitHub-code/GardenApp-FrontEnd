@@ -2,9 +2,12 @@ import React, {useState, useEffect, useContext} from 'react'
 import NewPlant from "./NewPlant";
 import PlantList from "./PlantList";
 import { Link } from "react-router-dom";
-import GardenContext from './context/GardenContext';
+import GardenContext from '../context/GardenContext';
+import axios from "axios";
 
 const Garden = () => {
+
+    const token = localStorage.getItem('token');
 
     const [plants, setPlants] = useState([]);
     const [garden, setGarden] = useState(null);
@@ -14,10 +17,10 @@ const Garden = () => {
     // fetch POST to create a new garden
     const handleClick = async () => {
         try{
-            fetch('http://localhost:9000/api/garden', {
+            await axios.post('http://localhost:9000/api/garden', {body: JSON.stringify({})},{
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({})
+                headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'},
+                withCredentials: true
               })
           }
         catch(err){
@@ -29,11 +32,11 @@ const Garden = () => {
     // fetch GET the garden
     useEffect( () => {
         const fetchGarden = async() => {
-        await fetch(`http://localhost:9000/api/gardens/${gardenId.gardenId}`,{
+        await axios.get(`http://localhost:9000/api/gardens/${gardenId.gardenId}`,{
             method: 'GET',
-            headers: {'Content-Type': 'application/json'},
+            headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'},
+            withCredentials: true
         })
-        .then( (res) => res.json())
         .then( (garden) => {
             setGarden(garden);
             console.log("Garden:")
@@ -45,11 +48,16 @@ const Garden = () => {
 
 // fetch GET the plants that belong to this garden
 useEffect( () => {
+    const plantsFromFetch = [];
     const fetchPlants = async() => {
-    await fetch(`http://localhost:9000/api/plantsbygardenid/${gardenId.gardenId}`)
-    .then( (res) => res.json())
+    await axios.get(`http://localhost:9000/api/plantsbygardenid/${gardenId.gardenId}`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'},
+        withCredentials: true
+    })
     .then( (plants) => {
-        setPlants(plants);
+        plants.data.map((p) => {plantsFromFetch.push(p)});
+        setPlants(plantsFromFetch);
         console.log("Plants:");
         console.log(plants);
     })
@@ -58,7 +66,7 @@ useEffect( () => {
 }, [] );
 
 
-    if(!garden) return (
+    if(garden==null || garden.data==null) return (
         <div>
             <h1>You don't have a garden yet</h1>
             <button onClick={handleClick} >I want a garden</button>
@@ -71,7 +79,7 @@ useEffect( () => {
             <Link to="/garden/newplant"> <NewPlant/> </Link>
         </div>)
 
-    return (
+    if(garden.data!=null) return (
         <>
         <div>
         <PlantList plants={plants}/>
